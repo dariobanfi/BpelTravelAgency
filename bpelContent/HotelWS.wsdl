@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://HotelReservation.Milestone1.SC13Project" xmlns:ax2221="http://HotelReservation.Milestone1.SC13Project/xsd" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://HotelReservation.Milestone1.SC13Project">
+    <wsdl:documentation>
+		Please Type your service description here
+	</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema xmlns:ax2222="http://HotelReservation.Milestone1.SC13Project/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://HotelReservation.Milestone1.SC13Project">
+            <xs:import namespace="http://HotelReservation.Milestone1.SC13Project/xsd"/>
+            <xs:element name="HotelReservationImplUnAvailableException">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="UnAvailableException" nillable="true" type="ax2222:UnAvailableException"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="bookRoom">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="type" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="amount" type="xs:int"/>
+                        <xs:element minOccurs="0" name="period" nillable="true" type="ax2222:StayPeriod"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="bookRoomResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="cancelBooking">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="bookingID" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAvailableRooms">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="period" nillable="true" type="ax2222:StayPeriod"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAvailableRoomsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax2222:RoomInfo"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://HotelReservation.Milestone1.SC13Project/xsd">
+            <xs:complexType name="UnAvailableException">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="StayPeriod">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="checkin" nillable="true" type="ax2221:ReservationDate"/>
+                    <xs:element minOccurs="0" name="checkout" nillable="true" type="ax2221:ReservationDate"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ReservationDate">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="date" type="xs:int"/>
+                    <xs:element minOccurs="0" name="month" type="xs:int"/>
+                    <xs:element minOccurs="0" name="year" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RoomInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="rate" type="xs:int"/>
+                    <xs:element minOccurs="0" name="type" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="vacancies" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="bookRoomRequest">
+        <wsdl:part name="parameters" element="ns:bookRoom"/>
+    </wsdl:message>
+    <wsdl:message name="bookRoomResponse">
+        <wsdl:part name="parameters" element="ns:bookRoomResponse"/>
+    </wsdl:message>
+    <wsdl:message name="HotelReservationImplUnAvailableException">
+        <wsdl:part name="parameters" element="ns:HotelReservationImplUnAvailableException"/>
+    </wsdl:message>
+    <wsdl:message name="cancelBookingRequest">
+        <wsdl:part name="parameters" element="ns:cancelBooking"/>
+    </wsdl:message>
+    <wsdl:message name="getAvailableRoomsRequest">
+        <wsdl:part name="parameters" element="ns:getAvailableRooms"/>
+    </wsdl:message>
+    <wsdl:message name="getAvailableRoomsResponse">
+        <wsdl:part name="parameters" element="ns:getAvailableRoomsResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="HotelReservationImplPortType">
+        <wsdl:operation name="bookRoom">
+            <wsdl:input message="ns:bookRoomRequest" wsaw:Action="urn:bookRoom"/>
+            <wsdl:output message="ns:bookRoomResponse" wsaw:Action="urn:bookRoomResponse"/>
+            <wsdl:fault message="ns:HotelReservationImplUnAvailableException" name="HotelReservationImplUnAvailableException" wsaw:Action="urn:bookRoomHotelReservationImplUnAvailableException"/>
+        </wsdl:operation>
+        <wsdl:operation name="cancelBooking">
+            <wsdl:input message="ns:cancelBookingRequest" wsaw:Action="urn:cancelBooking"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAvailableRooms">
+            <wsdl:input message="ns:getAvailableRoomsRequest" wsaw:Action="urn:getAvailableRooms"/>
+            <wsdl:output message="ns:getAvailableRoomsResponse" wsaw:Action="urn:getAvailableRoomsResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="HotelReservationImplSoap11Binding" type="ns:HotelReservationImplPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="bookRoom">
+            <soap:operation soapAction="urn:bookRoom" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="HotelReservationImplUnAvailableException">
+                <soap:fault use="literal" name="HotelReservationImplUnAvailableException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="cancelBooking">
+            <soap:operation soapAction="urn:cancelBooking" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getAvailableRooms">
+            <soap:operation soapAction="urn:getAvailableRooms" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="HotelReservationImplSoap12Binding" type="ns:HotelReservationImplPortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="bookRoom">
+            <soap12:operation soapAction="urn:bookRoom" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="HotelReservationImplUnAvailableException">
+                <soap12:fault use="literal" name="HotelReservationImplUnAvailableException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="cancelBooking">
+            <soap12:operation soapAction="urn:cancelBooking" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getAvailableRooms">
+            <soap12:operation soapAction="urn:getAvailableRooms" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="HotelReservationImplHttpBinding" type="ns:HotelReservationImplPortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="bookRoom">
+            <http:operation location="bookRoom"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cancelBooking">
+            <http:operation location="cancelBooking"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getAvailableRooms">
+            <http:operation location="getAvailableRooms"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="HotelReservationImpl">
+        <wsdl:port name="HotelReservationImplHttpSoap11Endpoint" binding="ns:HotelReservationImplSoap11Binding">
+            <soap:address location="http://vmjacobsen4.informatik.tu-muenchen.de:8080/axis2/services/g47/HotelReservationImpl.HotelReservationImplHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="HotelReservationImplHttpSoap12Endpoint" binding="ns:HotelReservationImplSoap12Binding">
+            <soap12:address location="http://vmjacobsen4.informatik.tu-muenchen.de:8080/axis2/services/g47/HotelReservationImpl.HotelReservationImplHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="HotelReservationImplHttpEndpoint" binding="ns:HotelReservationImplHttpBinding">
+            <http:address location="http://vmjacobsen4.informatik.tu-muenchen.de:8080/axis2/services/47/HotelReservationImpl.HotelReservationImplHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

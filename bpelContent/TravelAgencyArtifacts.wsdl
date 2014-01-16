@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://TravelAgency.Milestone3.SC13Project/" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:wsdl="http://FlightTicket.Milestone1.SC13Project" xmlns:wsdl1="http://HotelReservation.Milestone1.SC13Project" xmlns:wsdl2="http://BookStore.Milestone1.SC13Project" xmlns:wsdl3="http://Warehouse.Milestone1.SC13Project" xmlns:wsdl4="http://Payment.Milestone1.SC13Project" name="g14-TravelAgency" targetNamespace="http://TravelAgency.Milestone3.SC13Project/">
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     TYPE DEFINITION - List of types participating in this BPEL process 
+     The BPEL Designer will generate default request and response types
+     but you can define or import any XML Schema type and use them as part 
+     of the message types.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <plnk:partnerLinkType name="FlightTicketType">
+    <plnk:role name="FlightProvider" portType="wsdl:FlightTicketImplPortType"/>
+  </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="HotelBookingType">
+    <plnk:role name="HotelProvider" portType="wsdl1:HotelReservationImplPortType"/>
+  </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="BookServicePLT">
+    <plnk:role name="BookServicePLRole" portType="wsdl2:BookStoreImplPortType"/>
+  </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="WarehousePLT">
+    <plnk:role name="WarehousePLRole" portType="wsdl3:WarehouseImplPortType"/>
+     </plnk:partnerLinkType> 
+      <plnk:partnerLinkType name="PaymentType">
+    <plnk:role name="PaymentProvider" portType="wsdl4:PaymentPortType"/>
+     </plnk:partnerLinkType>
+     
+    <import location="FlightWS.wsdl" namespace="http://FlightTicket.Milestone1.SC13Project"/>
+    <import location="HotelWS.wsdl" namespace="http://HotelReservation.Milestone1.SC13Project"/>
+    <import location="PaymentWS.wsdl" namespace="http://Payment.Milestone1.SC13Project"/>
+    <import location="WarehouseWS.wsdl" namespace="http://Warehouse.Milestone1.SC13Project"/>
+    <import location="BookWS.wsdl" namespace="http://BookStore.Milestone1.SC13Project"/>
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://TravelAgency.Milestone3.SC13Project/">
+
+            <element name="TravelAgencyRequest">
+                <complexType>
+                    <sequence>
+                    	<element maxOccurs="1" minOccurs="1" name="name" type="string"/>
+                    	<element maxOccurs="1" minOccurs="1" name="address" type="string"/>
+                    	<element maxOccurs="1" minOccurs="1" name="departurecity" type="string"/>
+                    	<element maxOccurs="1" minOccurs="1" name="destinationcity" type="string"/>
+                    	<element maxOccurs="1" minOccurs="1" name="departuredate" type="date"/>
+                    	<element maxOccurs="1" minOccurs="1" name="returndate" type="date"/>
+                    </sequence>
+                </complexType>
+            </element>
+
+            <element name="TravelAgencyResponse">
+                <complexType>
+                    <sequence>
+                    	<element maxOccurs="1" minOccurs="1" name="successful" type="boolean"/>
+                    	<element maxOccurs="1" minOccurs="0" name="itinerary" type="tns:itineraryType">
+                    	</element>
+                    	<element maxOccurs="1" minOccurs="0" name="shippingID" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        
+            <complexType name="itineraryType">
+            	<sequence>
+            		<element name="departFlightNo" type="string"/>
+            		<element name="returnFligthNo" type="string"/>
+            		<element name="hotelBookingID" type="string"/>
+            	</sequence>
+            </complexType>
+            
+            <element name="InputDate">
+                      <complexType>
+                        <sequence>
+                             <element minOccurs="0" name="date" type="int"/>
+                             <element minOccurs="0" name="month" type="int"/>
+                             <element minOccurs="0" name="year" type="int"/>
+                        </sequence>
+                      </complexType>
+             </element>
+             
+             <element name="NewBookTitle">
+                      <complexType>
+                        <sequence>
+                             <element name="title" type="string"/>
+                        </sequence>
+                      </complexType>
+             </element>
+             
+             <element name="ResourceID">
+                      <complexType>
+                        <sequence>
+                             <element name="resourceID" type="string"/>
+                        </sequence>
+                      </complexType>
+             </element>
+        </schema>
+    </types>
+
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     MESSAGE TYPE DEFINITION - Definition of the message types used as 
+     part of the port type defintions
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <message name="TravelAgencyRequestMessage">
+        <part element="tns:TravelAgencyRequest" name="payload"/>
+    </message>
+    <message name="TravelAgencyResponseMessage">
+        <part element="tns:TravelAgencyResponse" name="payload"/>
+    </message>
+    <message name="InputDateMessage">
+        <part element="tns:InputDate" name="payload"/>
+    </message>
+    <message name="ConcatBookTitleMessage">
+        <part element="tns:NewBookTitle" name="payload"/>
+    </message>
+    <message name="ResourceIDMessage">
+        <part element="tns:ResourceID" name="payload"/>
+    </message>
+    
+    
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     PORT TYPE DEFINITION - A port type groups a set of operations into
+     a logical service unit.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+
+    <!-- portType implemented by the TravelAgency BPEL process -->
+    <portType name="TravelAgency">
+        <operation name="process">
+            <input message="tns:TravelAgencyRequestMessage"/>
+            <output message="tns:TravelAgencyResponseMessage"/>
+        </operation>
+    </portType>   
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     PARTNER LINK TYPE DEFINITION
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <plnk:partnerLinkType name="TravelAgency">
+        <plnk:role name="TravelAgencyProvider" portType="tns:TravelAgency"/>
+    </plnk:partnerLinkType>
+    
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     BINDING DEFINITION - Defines the message format and protocol details
+     for a web service.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <binding name="TravelAgencyBinding" type="tns:TravelAgency">
+    	<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    	<operation name="process">
+    		<soap:operation soapAction="http://TravelAgency.Milestone3.SC12Project//process"/>
+    		<input>
+    			<soap:body use="literal"/>
+    		</input>
+    		<output>
+    			<soap:body use="literal"/>
+    		</output>
+    	</operation>
+    </binding>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     SERVICE DEFINITION - A service groups a set of ports into
+     a service unit.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <service name="g14-TravelAgencyService">
+    	<port binding="tns:TravelAgencyBinding" name="TravelAgencyPort">
+    		<soap:address location="http://localhost:8080/ode/processes/g14-TravelAgency"/>
+    	</port>
+    </service>
+
+</definitions>

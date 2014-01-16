@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ax2375="http://BookStore.Milestone1.SC13Project/xsd" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://BookStore.Milestone1.SC13Project" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://BookStore.Milestone1.SC13Project">
+    <wsdl:documentation>
+		Please Type your service description here
+	</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema xmlns:ax2376="http://BookStore.Milestone1.SC13Project/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://BookStore.Milestone1.SC13Project">
+            <xs:import namespace="http://BookStore.Milestone1.SC13Project/xsd"/>
+            <xs:element name="getAllBookISBN10">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAllBookISBN10Response">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAllBookISBN13">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAllBookISBN13Response">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getBooksByTitle">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getBooksByTitleResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax2375:BookInfo"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getBooksByAuthor">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="author" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getBooksByAuthorResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax2375:BookInfo"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getBookInfobyISBN10">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="isbn10" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getBookInfobyISBN10Response">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax2375:BookInfo"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getBookInfobyISBN13">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="isbn13" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getBookInfobyISBN13Response">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax2375:BookInfo"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAllBooKNames">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAllBooKNamesResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://BookStore.Milestone1.SC13Project/xsd">
+            <xs:complexType name="BookInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ISBN10" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ISBN13" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="authors" nillable="true" type="ax2375:AuthorsInfo"/>
+                    <xs:element minOccurs="0" name="pageNum" nillable="true" type="xs:int"/>
+                    <xs:element minOccurs="0" name="price" type="xs:double"/>
+                    <xs:element minOccurs="0" name="publishdate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="publisher" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="resourceID" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="title" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="version" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AuthorsInfo">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="author" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getBookInfobyISBN13Request">
+        <wsdl:part name="parameters" element="ns:getBookInfobyISBN13"/>
+    </wsdl:message>
+    <wsdl:message name="getBookInfobyISBN13Response">
+        <wsdl:part name="parameters" element="ns:getBookInfobyISBN13Response"/>
+    </wsdl:message>
+    <wsdl:message name="getAllBookISBN10Request">
+        <wsdl:part name="parameters" element="ns:getAllBookISBN10"/>
+    </wsdl:message>
+    <wsdl:message name="getAllBookISBN10Response">
+        <wsdl:part name="parameters" element="ns:getAllBookISBN10Response"/>
+    </wsdl:message>
+    <wsdl:message name="getBookInfobyISBN10Request">
+        <wsdl:part name="parameters" element="ns:getBookInfobyISBN10"/>
+    </wsdl:message>
+    <wsdl:message name="getBookInfobyISBN10Response">
+        <wsdl:part name="parameters" element="ns:getBookInfobyISBN10Response"/>
+    </wsdl:message>
+    <wsdl:message name="getAllBooKNamesRequest">
+        <wsdl:part name="parameters" element="ns:getAllBooKNames"/>
+    </wsdl:message>
+    <wsdl:message name="getAllBooKNamesResponse">
+        <wsdl:part name="parameters" element="ns:getAllBooKNamesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getBooksByTitleRequest">
+        <wsdl:part name="parameters" element="ns:getBooksByTitle"/>
+    </wsdl:message>
+    <wsdl:message name="getBooksByTitleResponse">
+        <wsdl:part name="parameters" element="ns:getBooksByTitleResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getBooksByAuthorRequest">
+        <wsdl:part name="parameters" element="ns:getBooksByAuthor"/>
+    </wsdl:message>
+    <wsdl:message name="getBooksByAuthorResponse">
+        <wsdl:part name="parameters" element="ns:getBooksByAuthorResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getAllBookISBN13Request">
+        <wsdl:part name="parameters" element="ns:getAllBookISBN13"/>
+    </wsdl:message>
+    <wsdl:message name="getAllBookISBN13Response">
+        <wsdl:part name="parameters" element="ns:getAllBookISBN13Response"/>
+    </wsdl:message>
+    <wsdl:portType name="BookStoreImplPortType">
+        <wsdl:operation name="getBookInfobyISBN13">
+            <wsdl:input message="ns:getBookInfobyISBN13Request" wsaw:Action="urn:getBookInfobyISBN13"/>
+            <wsdl:output message="ns:getBookInfobyISBN13Response" wsaw:Action="urn:getBookInfobyISBN13Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAllBookISBN10">
+            <wsdl:input message="ns:getAllBookISBN10Request" wsaw:Action="urn:getAllBookISBN10"/>
+            <wsdl:output message="ns:getAllBookISBN10Response" wsaw:Action="urn:getAllBookISBN10Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="getBookInfobyISBN10">
+            <wsdl:input message="ns:getBookInfobyISBN10Request" wsaw:Action="urn:getBookInfobyISBN10"/>
+            <wsdl:output message="ns:getBookInfobyISBN10Response" wsaw:Action="urn:getBookInfobyISBN10Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAllBooKNames">
+            <wsdl:input message="ns:getAllBooKNamesRequest" wsaw:Action="urn:getAllBooKNames"/>
+            <wsdl:output message="ns:getAllBooKNamesResponse" wsaw:Action="urn:getAllBooKNamesResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getBooksByTitle">
+            <wsdl:input message="ns:getBooksByTitleRequest" wsaw:Action="urn:getBooksByTitle"/>
+            <wsdl:output message="ns:getBooksByTitleResponse" wsaw:Action="urn:getBooksByTitleResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getBooksByAuthor">
+            <wsdl:input message="ns:getBooksByAuthorRequest" wsaw:Action="urn:getBooksByAuthor"/>
+            <wsdl:output message="ns:getBooksByAuthorResponse" wsaw:Action="urn:getBooksByAuthorResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAllBookISBN13">
+            <wsdl:input message="ns:getAllBookISBN13Request" wsaw:Action="urn:getAllBookISBN13"/>
+            <wsdl:output message="ns:getAllBookISBN13Response" wsaw:Action="urn:getAllBookISBN13Response"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="BookStoreImplSoap11Binding" type="ns:BookStoreImplPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="getBookInfobyISBN13">
+            <soap:operation soapAction="urn:getBookInfobyISBN13" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllBookISBN10">
+            <soap:operation soapAction="urn:getAllBookISBN10" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getBookInfobyISBN10">
+            <soap:operation soapAction="urn:getBookInfobyISBN10" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllBooKNames">
+            <soap:operation soapAction="urn:getAllBooKNames" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getBooksByTitle">
+            <soap:operation soapAction="urn:getBooksByTitle" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getBooksByAuthor">
+            <soap:operation soapAction="urn:getBooksByAuthor" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllBookISBN13">
+            <soap:operation soapAction="urn:getAllBookISBN13" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="BookStoreImplSoap12Binding" type="ns:BookStoreImplPortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="getBookInfobyISBN13">
+            <soap12:operation soapAction="urn:getBookInfobyISBN13" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllBookISBN10">
+            <soap12:operation soapAction="urn:getAllBookISBN10" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getBookInfobyISBN10">
+            <soap12:operation soapAction="urn:getBookInfobyISBN10" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllBooKNames">
+            <soap12:operation soapAction="urn:getAllBooKNames" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getBooksByTitle">
+            <soap12:operation soapAction="urn:getBooksByTitle" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getBooksByAuthor">
+            <soap12:operation soapAction="urn:getBooksByAuthor" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllBookISBN13">
+            <soap12:operation soapAction="urn:getAllBookISBN13" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="BookStoreImplHttpBinding" type="ns:BookStoreImplPortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="getBookInfobyISBN13">
+            <http:operation location="getBookInfobyISBN13"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllBookISBN10">
+            <http:operation location="getAllBookISBN10"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getBookInfobyISBN10">
+            <http:operation location="getBookInfobyISBN10"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllBooKNames">
+            <http:operation location="getAllBooKNames"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getBooksByTitle">
+            <http:operation location="getBooksByTitle"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getBooksByAuthor">
+            <http:operation location="getBooksByAuthor"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllBookISBN13">
+            <http:operation location="getAllBookISBN13"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="BookStoreImpl">
+        <wsdl:port name="BookStoreImplHttpSoap11Endpoint" binding="ns:BookStoreImplSoap11Binding">
+            <soap:address location="http://vmjacobsen4.informatik.tu-muenchen.de:8080/axis2/services/g14/BookStoreImpl.BookStoreImplHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="BookStoreImplHttpSoap12Endpoint" binding="ns:BookStoreImplSoap12Binding">
+            <soap12:address location="http://vmjacobsen4.informatik.tu-muenchen.de:8080/axis2/services/g14/BookStoreImpl.BookStoreImplHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="BookStoreImplHttpEndpoint" binding="ns:BookStoreImplHttpBinding">
+            <http:address location="http://vmjacobsen4.informatik.tu-muenchen.de:8080/axis2/services/g14/BookStoreImpl.BookStoreImplHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
+

@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ax221="http://Warehouse.Milestone1.SC13Project/xsd" xmlns:ns="http://Warehouse.Milestone1.SC13Project" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://Warehouse.Milestone1.SC13Project">
+    <wsdl:documentation>
+		Please Type your service description here
+	</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema xmlns:ax222="http://Warehouse.Milestone1.SC13Project/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://Warehouse.Milestone1.SC13Project">
+            <xs:import namespace="http://Warehouse.Milestone1.SC13Project/xsd"/>
+            <xs:element name="WarehouseImplNotEnoughItemException">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="NotEnoughItemException" nillable="true" type="ax221:NotEnoughItemException"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="pickupItems">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="resourceID" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="amount" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="pickupItemsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="complementStock">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="resourceID" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="amount" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="complementStockResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="holdItems">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="resourceID" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="amount" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="holdItemsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="cancelHoldingItems">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="holdingID" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="WarehouseImplInvalidHoldingIDException">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="InvalidHoldingIDException" nillable="true" type="ax221:InvalidHoldingIDException"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="pickupHoldingItems">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="holdingID" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="pickupHoldingItemsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="query">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="resourceID" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="queryResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://Warehouse.Milestone1.SC13Project/xsd">
+            <xs:complexType name="NotEnoughItemException">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="InvalidHoldingIDException">
+                <xs:sequence/>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="complementStockRequest">
+        <wsdl:part name="parameters" element="ns:complementStock"/>
+    </wsdl:message>
+    <wsdl:message name="complementStockResponse">
+        <wsdl:part name="parameters" element="ns:complementStockResponse"/>
+    </wsdl:message>
+    <wsdl:message name="queryRequest">
+        <wsdl:part name="parameters" element="ns:query"/>
+    </wsdl:message>
+    <wsdl:message name="queryResponse">
+        <wsdl:part name="parameters" element="ns:queryResponse"/>
+    </wsdl:message>
+    <wsdl:message name="holdItemsRequest">
+        <wsdl:part name="parameters" element="ns:holdItems"/>
+    </wsdl:message>
+    <wsdl:message name="holdItemsResponse">
+        <wsdl:part name="parameters" element="ns:holdItemsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WarehouseImplNotEnoughItemException">
+        <wsdl:part name="parameters" element="ns:WarehouseImplNotEnoughItemException"/>
+    </wsdl:message>
+    <wsdl:message name="cancelHoldingItemsRequest">
+        <wsdl:part name="parameters" element="ns:cancelHoldingItems"/>
+    </wsdl:message>
+    <wsdl:message name="pickupItemsRequest">
+        <wsdl:part name="parameters" element="ns:pickupItems"/>
+    </wsdl:message>
+    <wsdl:message name="pickupItemsResponse">
+        <wsdl:part name="parameters" element="ns:pickupItemsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="pickupHoldingItemsRequest">
+        <wsdl:part name="parameters" element="ns:pickupHoldingItems"/>
+    </wsdl:message>
+    <wsdl:message name="pickupHoldingItemsResponse">
+        <wsdl:part name="parameters" element="ns:pickupHoldingItemsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="WarehouseImplInvalidHoldingIDException">
+        <wsdl:part name="parameters" element="ns:WarehouseImplInvalidHoldingIDException"/>
+    </wsdl:message>
+    <wsdl:portType name="WarehouseImplPortType">
+        <wsdl:operation name="complementStock">
+            <wsdl:input message="ns:complementStockRequest" wsaw:Action="urn:complementStock"/>
+            <wsdl:output message="ns:complementStockResponse" wsaw:Action="urn:complementStockResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="query">
+            <wsdl:input message="ns:queryRequest" wsaw:Action="urn:query"/>
+            <wsdl:output message="ns:queryResponse" wsaw:Action="urn:queryResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="holdItems">
+            <wsdl:input message="ns:holdItemsRequest" wsaw:Action="urn:holdItems"/>
+            <wsdl:output message="ns:holdItemsResponse" wsaw:Action="urn:holdItemsResponse"/>
+            <wsdl:fault message="ns:WarehouseImplNotEnoughItemException" name="WarehouseImplNotEnoughItemException" wsaw:Action="urn:holdItemsWarehouseImplNotEnoughItemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="cancelHoldingItems">
+            <wsdl:input message="ns:cancelHoldingItemsRequest" wsaw:Action="urn:cancelHoldingItems"/>
+        </wsdl:operation>
+        <wsdl:operation name="pickupItems">
+            <wsdl:input message="ns:pickupItemsRequest" wsaw:Action="urn:pickupItems"/>
+            <wsdl:output message="ns:pickupItemsResponse" wsaw:Action="urn:pickupItemsResponse"/>
+            <wsdl:fault message="ns:WarehouseImplNotEnoughItemException" name="WarehouseImplNotEnoughItemException" wsaw:Action="urn:pickupItemsWarehouseImplNotEnoughItemException"/>
+        </wsdl:operation>
+        <wsdl:operation name="pickupHoldingItems">
+            <wsdl:input message="ns:pickupHoldingItemsRequest" wsaw:Action="urn:pickupHoldingItems"/>
+            <wsdl:output message="ns:pickupHoldingItemsResponse" wsaw:Action="urn:pickupHoldingItemsResponse"/>
+            <wsdl:fault message="ns:WarehouseImplInvalidHoldingIDException" name="WarehouseImplInvalidHoldingIDException" wsaw:Action="urn:pickupHoldingItemsWarehouseImplInvalidHoldingIDException"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="WarehouseImplSoap11Binding" type="ns:WarehouseImplPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="complementStock">
+            <soap:operation soapAction="urn:complementStock" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="query">
+            <soap:operation soapAction="urn:query" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="holdItems">
+            <soap:operation soapAction="urn:holdItems" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="WarehouseImplNotEnoughItemException">
+                <soap:fault use="literal" name="WarehouseImplNotEnoughItemException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="cancelHoldingItems">
+            <soap:operation soapAction="urn:cancelHoldingItems" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="pickupItems">
+            <soap:operation soapAction="urn:pickupItems" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="WarehouseImplNotEnoughItemException">
+                <soap:fault use="literal" name="WarehouseImplNotEnoughItemException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="pickupHoldingItems">
+            <soap:operation soapAction="urn:pickupHoldingItems" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="WarehouseImplInvalidHoldingIDException">
+                <soap:fault use="literal" name="WarehouseImplInvalidHoldingIDException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="WarehouseImplSoap12Binding" type="ns:WarehouseImplPortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="complementStock">
+            <soap12:operation soapAction="urn:complementStock" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="query">
+            <soap12:operation soapAction="urn:query" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="holdItems">
+            <soap12:operation soapAction="urn:holdItems" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="WarehouseImplNotEnoughItemException">
+                <soap12:fault use="literal" name="WarehouseImplNotEnoughItemException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="cancelHoldingItems">
+            <soap12:operation soapAction="urn:cancelHoldingItems" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="pickupItems">
+            <soap12:operation soapAction="urn:pickupItems" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="WarehouseImplNotEnoughItemException">
+                <soap12:fault use="literal" name="WarehouseImplNotEnoughItemException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="pickupHoldingItems">
+            <soap12:operation soapAction="urn:pickupHoldingItems" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="WarehouseImplInvalidHoldingIDException">
+                <soap12:fault use="literal" name="WarehouseImplInvalidHoldingIDException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="WarehouseImplHttpBinding" type="ns:WarehouseImplPortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="complementStock">
+            <http:operation location="complementStock"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="query">
+            <http:operation location="query"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="holdItems">
+            <http:operation location="holdItems"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cancelHoldingItems">
+            <http:operation location="cancelHoldingItems"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="pickupItems">
+            <http:operation location="pickupItems"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="pickupHoldingItems">
+            <http:operation location="pickupHoldingItems"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="WarehouseImpl">
+        <wsdl:port name="WarehouseImplHttpSoap11Endpoint" binding="ns:WarehouseImplSoap11Binding">
+            <soap:address location="http://vmjacobsen4.informatik.tu-muenchen.de:8080/axis2/services/g51/WarehouseImpl.WarehouseImplHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="WarehouseImplHttpSoap12Endpoint" binding="ns:WarehouseImplSoap12Binding">
+            <soap12:address location="http://vmjacobsen4.informatik.tu-muenchen.de:8080/axis2/services/g51/WarehouseImpl.WarehouseImplHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="WarehouseImplHttpEndpoint" binding="ns:WarehouseImplHttpBinding">
+            <http:address location="http://vmjacobsen4.informatik.tu-muenchen.de:8080/axis2/services/g51/WarehouseImpl.WarehouseImplHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

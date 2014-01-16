@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+                  xmlns:ns1="http://org.apache.axis2/xsd" 
+                  xmlns:ns="http://Shipping.Milestone1.SC12Project" 
+                  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" 
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+                  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" 
+                  targetNamespace="http://Shipping.Milestone1.SC12Project">
+    <wsdl:documentation>ShippingWS</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://Shipping.Milestone1.SC12Project">
+            <xs:element name="shipping">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="resourceID" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="address" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="shippingResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="shippingRequest">
+        <wsdl:part name="parameters" element="ns:shipping"/>
+    </wsdl:message>
+    <wsdl:message name="shippingResponse">
+        <wsdl:part name="parameters" element="ns:shippingResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="ShippingWSPortType">
+        <wsdl:operation name="shipping">
+            <wsdl:input message="ns:shippingRequest" wsaw:Action="urn:shipping"/>
+            <wsdl:output message="ns:shippingResponse" wsaw:Action="urn:shippingResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     PARTNER LINK TYPE DEFINITION
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <plnk:partnerLinkType name="ShippingWSLT">
+        <plnk:role name="ShippingWSProvider" portType="ns:ShippingWSPortType"/>
+    </plnk:partnerLinkType>
+    
+    
+    <wsdl:binding name="ShippingWSSoap11Binding" type="ns:ShippingWSPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="shipping">
+            <soap:operation soapAction="urn:shipping" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="ShippingWSSoap12Binding" type="ns:ShippingWSPortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="shipping">
+            <soap12:operation soapAction="urn:shipping" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="ShippingWSHttpBinding" type="ns:ShippingWSPortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="shipping">
+            <http:operation location="shipping"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ShippingWS">
+        <wsdl:port name="ShippingWSHttpSoap11Endpoint" binding="ns:ShippingWSSoap11Binding">
+            <soap:address location="http://vmjacobsen4.informatik.tu-muenchen.de:8080/axis2/services/ShippingWS.ShippingWSHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="ShippingWSHttpSoap12Endpoint" binding="ns:ShippingWSSoap12Binding">
+            <soap12:address location="http://vmjacobsen4.informatik.tu-muenchen.de:8080/axis2/services/ShippingWS.ShippingWSHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="ShippingWSHttpEndpoint" binding="ns:ShippingWSHttpBinding">
+            <http:address location="http://vmjacobsen4.informatik.tu-muenchen.de:8080/axis2/services/ShippingWS.ShippingWSHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
